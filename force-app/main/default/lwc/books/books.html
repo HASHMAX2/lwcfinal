@@ -1,0 +1,36 @@
+<template>
+   <lightning-card   title="Book App" >
+      <div class="slds-p-around_medium lgc-bg">
+         <lightning-input type="text" label="Enter some text" placeholder="type here..." onchange={changeHandler} value={query}></lightning-input>
+      
+     </div>
+    <div class="slds-m-around_medium " style="background-color: pink;"> 
+      <template if:true={books}>
+         <lightning-layout multiple-rows>
+            <template for:each={books.items} for:item="book">
+               <lightning-layout-item size="3" key = {book.id}  padding="around-small" 
+          >
+            <div class="slds-box slds-text-align_center" >
+               <img src={book.volumeInfo.imageLinks.smallThumbnail} height="250px" >
+
+            <div><strong>Heading</strong> 
+               {book.volumeInfo.title}</div>
+
+            <div><strong>Publisher</strong><template if:false={book.volumeInfo.publisher} >
+               Publisher Not Found   
+               </template> {book.volumeInfo.publisher}</div>
+            
+            </div>
+            
+         </lightning-layout-item>
+            </template>
+           
+      </lightning-layout>
+      </template>
+    </div>
+
+   </lightning-card>
+   
+
+
+</template>
